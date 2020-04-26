@@ -1,0 +1,86 @@
+{
+  "name": "node-template",
+  "version": "0.0.1",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "nodemon index.ts",
+    "test": "jest",
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "@types/jest": "25.1.4",
+    "@types/node": "13.9.1",
+    "@typescript-eslint/eslint-plugin": "2.23.0",
+    "@typescript-eslint/parser": "2.23.0",
+    "eslint": "6.8.0",
+    "eslint-config-prettier": "6.10.0",
+    "husky": "4.2.3",
+    "jest": "25.1.0",
+    "lint-staged": "10.0.8",
+    "nodemon": "2.0.2",
+    "prettier": "1.19.1",
+    "ts-jest": "25.2.1",
+    "ts-node": "8.6.2",
+    "typescript": "3.8.3"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "collectCoverage": true
+  },
+  "nodemonConfig": {
+    "watch": [
+      "src"
+    ],
+    "ext": "ts",
+    "ignore": [
+      "src/**/*.spec.ts"
+    ],
+    "exec": "ts-node ./index.ts"
+  },
+  "eslintConfig": {
+    "root": true,
+    "ignorePatterns": [
+      "dist/",
+      "coverage/",
+      "node_modules/",
+      "package.json"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+      "@typescript-eslint"
+    ],
+    "extends": [
+      "eslint:recommended",
+      "plugin:@typescript-eslint/eslint-recommended",
+      "plugin:@typescript-eslint/recommended",
+      "plugin:@typescript-eslint/recommended-requiring-type-checking",
+      "prettier/@typescript-eslint"
+    ],
+    "parserOptions": {
+      "project": [
+        "./tsconfig.json"
+      ]
+    }
+  },
+  "prettier": {
+    "parser": "typescript",
+    "tabWidth": 2,
+    "semi": true,
+    "singleQuote": false,
+    "trailingComma": "es5",
+    "bracketSpacing": true,
+    "arrowParens": "always"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.ts": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  }
+}
